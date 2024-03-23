@@ -44,11 +44,11 @@ namespace Cumulative1.Controllers
 
             while (ResultSet.Read())
             {
-                int StudentId = ResultSet.GetInt32(ResultSet.GetOrdinal("studentid"));
-                string StudentFname = ResultSet.GetString(ResultSet.GetOrdinal("studentfname"));
-                string StudentLname = ResultSet.GetString(ResultSet.GetOrdinal("studentlname"));
-                string StudentNumber = ResultSet.GetString(ResultSet.GetOrdinal("studentnumber"));
-                DateTime EnrolDate = ResultSet.GetDateTime(ResultSet.GetOrdinal("enroldate"));
+                int StudentId = Convert.ToInt32(ResultSet["studentid"]);
+                string StudentFname = ResultSet["studentfname"].ToString();
+                string StudentLname = ResultSet["studentlname"].ToString();
+                string StudentNumber = ResultSet["studentnumber"].ToString();
+                DateTime EnrolDate = Convert.ToDateTime(ResultSet["enroldate"]);
 
                 Student NewStudent = new Student();
                 NewStudent.StudentId = StudentId;
