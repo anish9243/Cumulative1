@@ -86,5 +86,34 @@ namespace Cumulative1.Controllers
             return RedirectToAction("List");
         }
 
+        //GET:/Teacher/Edit/{id}
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            TeacherDataController MyController = new TeacherDataController();
+            Teacher SelectedTeacher = MyController.FindTeacher(id);
+
+
+            //Views/Teacher/Edit.cshtml
+            return View(SelectedTeacher);
+        }
+        //POST:/Teacher/Update
+        [HttpPost]
+        public ActionResult Update(int id, string TeacherFname, string TeacherLname, string EmployeeNumber, DateTime HireDate, decimal Salary)
+        {
+            Teacher TeacherInfo = new Teacher();
+            TeacherInfo.TeacherFname = TeacherFname;
+            TeacherInfo.TeacherLname = TeacherLname;
+            TeacherInfo.EmployeeNumber = EmployeeNumber;
+            TeacherInfo.HireDate = HireDate;
+            TeacherInfo.Salary = Salary;
+
+            TeacherDataController controller = new TeacherDataController();
+            controller.UpdateTeacher(id, TeacherInfo);
+
+            return RedirectToAction("Show/" + id);
+        }
+
+
     }
 }
